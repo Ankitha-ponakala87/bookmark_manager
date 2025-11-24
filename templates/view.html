@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Links</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Playwrite+CU:wght@100..400&display=swap');
+    </style>
+    <script src="https://kit.fontawesome.com/c2eab35dea.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="./star.png">
+    <style>
+        * {
+            margin: 0px;
+            font-family: "Exo 2", sans-serif;
+            color: #ecefca;
+        }
+
+        section {
+            height: 100vh;
+            background-color: #213448;
+            padding-top: 20px;
+        }
+
+        table,
+        tr,
+        td,
+        th {
+            border: 2px solid #283b50;
+            border-collapse: collapse;
+            padding: 15px;
+        }
+
+        td button {
+            border: none;
+            background-color: transparent;
+            margin-left: 20px;
+            padding: 10px;
+        }
+
+        .sno {
+            width: 2vw;
+            padding: 10px;
+        }
+
+        .name {
+            width: 15vw;
+            padding: 10px;
+            margin-left: -30px;
+        }
+
+        .url {
+            width: 30vw;
+            padding: 10px;
+        }
+
+        .visit {
+            width: 5vw;
+        }
+
+        .edit {
+            width: 5vw;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        div button {
+            border: none;
+            background-color: #319fff;
+            padding: 12px;
+            margin: 50px;
+            color: #213448;
+            font-weight: 700;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <table>
+
+            <tr>
+                <th class="sno"></th>
+                <th class="name">Name</th>
+                <th class="url">URL</th>
+                <th class="edit">Edit</th>
+                <th class="visit">Remove</th>
+            </tr>
+
+            {% for link in links %}
+            <tr>
+                <!-- SERIAL NUMBER -->
+                <td>{{ loop.index }}.</td>
+
+                <!-- NAME -->
+                <td>{{ link[0] }}</td>
+
+                <!-- URL -->
+                <td><a href="{{ link[1] }}" target="_blank">{{ link[1] }}</a></td>
+
+                <!-- EDIT BUTTON -->
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="index" value="{{ loop.index0 }}">
+                        <button><i class="fa-solid fa-pen-to-square"></i></button>
+                    </form>
+                </td>
+
+                <!-- DELETE BUTTON -->
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="delete" value="{{ loop.index0 }}">
+                        <button><i class="fa-solid fa-xmark"></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+        <div>
+            <a href="{{url_for('dashboard')}}"><button>Back to home</button></a>
+            <a href="{{url_for('add')}}"><button>Add more</button></a>
+        </div>
+    </section>
+
+
+</body>
+
+</html>

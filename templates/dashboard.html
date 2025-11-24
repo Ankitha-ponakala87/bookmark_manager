@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarMark || Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c2eab35dea.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Playwrite+CU:wght@100..400&display=swap');
+    </style>
+    <link rel="icon" type="image/x-icon" href="./star.png">
+    <style>
+        * {
+            margin: 0px;
+            font-family: "Exo 2", sans-serif;
+            color: white;
+        }
+
+        #top {
+            height: 10vh;
+            background: #182534;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        #heading {
+            height: 90vh;
+            background: #313c47;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            padding-bottom: 7%;
+        }
+
+        #heading .heading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* background-color: #182534; */
+        }
+
+        #new {
+            width: 20vw;
+            height: 25vh;
+            background: #3e5c7e;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #old1 {
+            width: 25vw;
+            height: 40vh;
+            background: #3b516b;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border-top-right-radius: 50px;
+            box-shadow: 2px 2px 15px #0009135b;
+        }
+
+        #old2 {
+            width: 25vw;
+            height: 40vh;
+            background: #2c4059;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border-top-right-radius: 50px;
+            box-shadow: 2px 2px 15px #0009135b;
+        }
+
+        #recent {
+            width: 25vw;
+            height: 40vh;
+            background: #3b516b;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-top-right-radius: 50px;
+            box-shadow: 2px 2px 15px #0009135b;
+        }
+
+        .account {
+            border: none;
+            width: 7vw;
+            padding: 10px;
+            background-color: #213448;
+            color: #ecefca;
+            font-weight: 700;
+            border-radius: 10px;
+            margin: 0px 25px 0px 25px;
+        }
+
+        .add {
+            border: none;
+            width: 7vw;
+            padding: 10px;
+            background-color: #ecefca;
+            color: #213448;
+            font-weight: 700;
+            border-radius: 10px;
+            margin: 20px 5px 0px 10px;
+        }
+
+        .indiv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section id="top">
+        <div class="dropdown">
+            <button class="account" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{url_for('login')}}">Logout</a></li>
+                <li><a class="dropdown-item" href="{{url_for('delete_acc')}}">Delete Account</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Welcome {{user_name}}!</h3>
+        </div>
+    </section>
+    <section id="heading">
+        <div class="heading">
+            <h1><b>🌟StarMark</b></h1>
+            <h2>One place for everything you want to revisit.</h2>
+        </div>
+
+        <div class="cards" style=" width: 100vw; display: flex; flex-direction: row; justify-content: space-around;">
+            {% if link_data==[] %}
+            <section id="old1">
+                <div>
+                    <h5><b>No links added yet? Add Now.</b></h5>
+                    <a href="{{url_for('add')}}"><button class="add" style="margin-left: 25%">+ Add URL</button></a>
+                </div>
+            </section>
+
+            {% else %}
+            <section id="old1">
+                <div>
+                    <h5><b>Add Now.</b></h5>
+                    <a href="{{url_for('add')}}"><button class="add" style="margin-left: -12px">+ Add URL</button></a>
+                </div>
+            </section>
+            {% endif %}
+
+
+            {% if link_data!=[] %}
+            <section id="old2">
+                <div>
+                    <h5><b>Revisit Your Links</b></h5>
+                    <a href="{{url_for('view')}}"><button class="add" style="margin-left: 20px;">View All</button></a>
+                </div>
+            </section>
+
+
+            
+            <section id="recent">
+                <div class="indiv">
+                    <h4 class="mb-4"><b>Recently Added</b></h4>
+                    
+                    {% if link_data|length>1 %}
+                    <div class="d-flex flex-row">
+                        <h6 class="me-5">{{link2[0]}}</h6> <a href="{{link2[1]}}" target="_blank"><p>{{link2[1][:20]}}...</p></a>
+                    </div></br>
+                    {% endif %}
+
+                    
+                    <div class="d-flex flex-row">
+                        <h6 class="me-5">{{link1[0]}}</h6> <a href="{{link1[1]}}" target="_blank"><p>{{link1[1][:20]}}...</p></a>
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </section>
+
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarMark || Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Playwrite+CU:wght@100..400&display=swap');
+    </style>
+    <link rel="icon" type="image/x-icon" href="./star.png">
+    <style>
+        * {
+            margin: 0px;
+            font-family: "Exo 2", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(0deg, #213448, #375371);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            background-color: #547792;
+            width: 30vw;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 1px 1px 55px #213448;
+            backdrop-filter: blur(1);
+            color: #ecefca;
+        }
+
+        button {
+            border: none;
+            width: 7vw;
+            padding: 10px;
+            background-color: #213448;
+            color: #ecefca;
+            font-weight: 700;
+            border-radius: 10px;
+            margin: 20px 5px 0px 10px;
+        }
+
+        button:hover {
+            background-color: #94b4c1;
+            border: 2px solid #213448;
+            color: #213448;
+            scale: calc(1.05);
+        }
+
+        input {
+            border: none;
+            background-color: #ecefca;
+            padding: 10px;
+            width: 19vw;
+            margin: 7px 0px 25px 0px;
+            border-radius: 7px;
+        }
+
+        label {
+            font-size: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <form method="post">
+            <h1 style="margin-bottom: 30px; border-bottom: 2px dotted #ecefca; padding-bottom: 15px;">Login</h1>
+
+            <label>Username</label><br />
+            <input type="text" name="uname" placeholder="Enter username" /><br />
+
+            <label>Password</label><br />
+            <input type="password" name="upassword" placeholder="Enter password" /><br />
+
+            <button>Submit</button>
+        </form>
+    </center>
+
+</body>
+
+</html>
